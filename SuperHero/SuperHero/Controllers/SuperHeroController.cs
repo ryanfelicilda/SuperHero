@@ -17,7 +17,8 @@ namespace SuperHero.Controllers
         // GET: SuperHero
         public ActionResult Index()
         {
-            return View();
+            var superHeroList = context.SuperHero.ToList();
+            return View(superHeroList);
         }
 
         // GET: SuperHero/Details/5
@@ -40,7 +41,7 @@ namespace SuperHero.Controllers
             try
             {
                 // TODO: Add insert logic here
-                context.People.Add(SuperHero);
+                context.SuperHero.Add(SuperHero);
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
