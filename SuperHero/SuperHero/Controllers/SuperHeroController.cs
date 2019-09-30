@@ -61,17 +61,17 @@ namespace SuperHero.Controllers
 
         // POST: SuperHero/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, SuperHeroModels superHero)
         {
             try
             {
                 // TODO: Add update logic here
-                var superHeroEdit = context.SuperHero.FirstOrDefault(s => s.Id == id);
-                superHeroEdit.Name = Request.Form["Name"];
-                superHeroEdit.AlterEgo = Request.Form["Alter Ego"];
-                superHeroEdit.PrimaryAbility = Request.Form["Primary Ability"];
-                superHeroEdit.SecondaryAbility = Request.Form["Secondary Ability"];
-                superHeroEdit.Catchphrase = Request.Form["Catchphrase"];
+                var superHeroEdit = context.SuperHero.Find(id);
+                superHeroEdit.Name = superHero.Name;
+                superHeroEdit.AlterEgo = superHero.AlterEgo;
+                superHeroEdit.PrimaryAbility = superHero.PrimaryAbility;
+                superHeroEdit.SecondaryAbility = superHero.SecondaryAbility;
+                superHeroEdit.Catchphrase = superHero.Catchphrase;
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -84,17 +84,20 @@ namespace SuperHero.Controllers
         // GET: SuperHero/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var superHeroDelete = context.SuperHero.FirstOrDefault(s => s.Id == id);
+            return View(superHeroDelete);
         }
 
         // POST: SuperHero/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(SuperHeroModels SuperHero, int id)
         {
             try
             {
                 // TODO: Add delete logic here
-
+                var superHeroDelete = context.SuperHero.FirstOrDefault(s => s.Id == id);
+                context.SuperHero.Remove(superHeroDelete);
+                context.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
