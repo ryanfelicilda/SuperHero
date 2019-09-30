@@ -55,7 +55,8 @@ namespace SuperHero.Controllers
         // GET: SuperHero/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var superHeroEdit = context.SuperHero.FirstOrDefault(s => s.Id == id);
+            return View(superHeroEdit);
         }
 
         // POST: SuperHero/Edit/5
