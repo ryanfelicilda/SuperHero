@@ -66,7 +66,8 @@ namespace SuperHero.Controllers
             try
             {
                 // TODO: Add update logic here
-
+                var superHeroEdit = context.SuperHero.FirstOrDefault(s => s.Id == id);
+                superHeroEdit.Name = Request.Form["Name"];
                 return RedirectToAction("Index");
             }
             catch
