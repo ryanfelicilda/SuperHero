@@ -24,7 +24,8 @@ namespace SuperHero.Controllers
         // GET: SuperHero/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var superHeroDetails = context.SuperHero.FirstOrDefault(s => s.Id == id);
+            return View(superHeroDetails);
         }
 
         // GET: SuperHero/Create
