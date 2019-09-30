@@ -68,6 +68,11 @@ namespace SuperHero.Controllers
                 // TODO: Add update logic here
                 var superHeroEdit = context.SuperHero.FirstOrDefault(s => s.Id == id);
                 superHeroEdit.Name = Request.Form["Name"];
+                superHeroEdit.AlterEgo = Request.Form["Alter Ego"];
+                superHeroEdit.PrimaryAbility = Request.Form["Primary Ability"];
+                superHeroEdit.SecondaryAbility = Request.Form["Secondary Ability"];
+                superHeroEdit.Catchphrase = Request.Form["Catchphrase"];
+                context.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
